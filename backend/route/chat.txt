@@ -1,0 +1,10 @@
+profile upload using multer- dont upload while signing up gice it a default profile change it later once the profile changes send the notification to all the user
+verify: do nodemailer otp verification instead of sending otp send the link
+logger: use winston
+logout: use redis
+global chat
+direct messages between users
+when new user sign up send the notification
+display online user with green light
+when new user join display the name of user on display to all user
+then do coding collaborating feature

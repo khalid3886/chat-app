@@ -1,0 +1,28 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+nav{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    position: fixed;
+    width: 100%;
+    max-width: 100%;
+    height: 5rem;
+    z-index: 1000;
+    background: linear-gradient(rgb(204, 204, 230,0.5),rgb(183, 129, 129,0.5));
+}
+
+nav ul{
+    display: flex;
+    gap:2rem;
+    list-style: none;
+}
+
+section{
+    height: 100vh;
+    width: 100%;
+}
