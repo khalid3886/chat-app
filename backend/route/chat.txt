@@ -1,3 +1,4 @@
+in password add charcter digits
 profile upload using multer- dont upload while signing up gice it a default profile change it later once the profile changes send the notification to all the user
 verify: do nodemailer otp verification instead of sending otp send the link
 logger: use winston
