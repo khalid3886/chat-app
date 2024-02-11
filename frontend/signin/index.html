@@ -1,32 +1,22 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-	<title>Slide Navbar</title>
-	<link rel="stylesheet" type="text/css" href="style.css">
-<link href="https://fonts.googleapis.com/css2?family=Jost:wght@500&display=swap" rel="stylesheet">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<link rel="stylesheet" href="style.css">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Teko:wght@700&display=swap" rel="stylesheet">
 </head>
 <body>
-	<div class="main">  	
-		<input type="checkbox" id="chk" aria-hidden="true">
-
-			<div class="signup">
-				<form>
-					<label for="chk" aria-hidden="true">Sign up</label>
-					<input type="text" name="txt" placeholder="User name" required="">
-					<input type="email" name="email" placeholder="Email" required="">
-					<input type="password" name="pswd" placeholder="Password" required="">
-					<button>Sign up</button>
-				</form>
-			</div>
-
-			<div class="login">
-				<form>
-					<label for="chk" aria-hidden="true">Login</label>
-					<input type="email" name="email" placeholder="Email" required="">
-					<input type="password" name="pswd" placeholder="Password" required="">
-					<button>Login</button>
-				</form>
-			</div>
+	<div id="login">
+		<div id="title">login</div>
+		<input type="text" placeholder="email" id="login-email">
+		<input type="text" placeholder="password" id="login-pass">
+		<div id="registered"><span>Not registered? </span><a href="../signup/index.html">Create an account</a></div>
+		<button id="login-button">login</button>
 	</div>
 </body>
+<script src="script.js"></script>
 </html>

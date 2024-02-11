@@ -6,7 +6,7 @@ const verify=async (req,res,next)=>{
         const decoded=await jwt.verify(token,'khalid')
         if(decoded)
         {
-            const user=await UserModel.findOne({email:decoded.userEmail})
+            const user=await UserModel.findOne({email:decoded.email})
             if(user.verify===true)
             {
                 next()
@@ -15,7 +15,7 @@ const verify=async (req,res,next)=>{
                 res.status(200).json({msg:'verify first'})
             }
         }else{
-            res.status(200).json({msg:'ypu are not authorised'})
+            res.status(200).json({msg:'you are not authorised'})
         }
     }
     catch(err)

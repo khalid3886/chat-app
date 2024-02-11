@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main>
+        <aside>
+            <div id="profile">
+                <img id="user-avatar" alt="avatar">
+                <h4 id="username"></h4>
+                <h4 id="useremail"></h4>
+                <label for="avatar" id="update-avatar" class="button" >Update Avatar</label>
+                <input type="file" id="avatar" style="display: none;" accept="image/*">
+                <button id="user-verification" class="btn">verify yourself</button>
+                <div id="user-verified" style="display: none; color: green;">you are verified</div>
+            </div>
+            <button id="private-message" class="btn" style="margin-top: 10px; margin-bottom: 10px;">private messages</button>
+            <button class="btn">coding collaboration</button>
+        </aside>
+        <section>
+            <div id="section-top">
+                <div id="connected-user">online</div>
+                <button  id="log-out" class="btn-2">log out</button>
+            </div>
+            <div id="notifications" style="color: red;"></div>
+            <div id="chat-area">
+            </div>
+            <div id="text-area">
+                <input type="text" placeholder="enter the text.." id="input-msg">
+                <button id="send-msg" class="btn-2">submit</button>
+            </div>
+        </section>
+    </main>
+    <script src="https://cdn.socket.io/4.7.4/socket.io.min.js" integrity="sha384-Gr6Lu2Ajx28mzwyVR8CFkULdCU7kMlZ9UthllibdOSo6qAiN+yXNHqtgdTvFXMT4" crossorigin="anonymous"></script>
+</body>
+<script src="script.js"></script>
+</html>

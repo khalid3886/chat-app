@@ -2,6 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Teko', sans-serif; 
 }
 
 nav{
@@ -13,16 +14,38 @@ nav{
     max-width: 100%;
     height: 5rem;
     z-index: 1000;
-    background: linear-gradient(rgb(204, 204, 230,0.5),rgb(183, 129, 129,0.5));
+   background-color: rgb(0, 0, 0,0.2);
+   margin-top: 1rem;
 }
 
+li a{
+    text-decoration: none;
+    color: white;
+}
 nav ul{
     display: flex;
-    gap:2rem;
+    gap:4rem;
     list-style: none;
 }
 
 section{
     height: 100vh;
     width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+   font-weight: bold; 
+   font-size: 42px;
+}
+
+body{
+    background-image: url('./assets/bg.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat; 
+}
+
+a:hover{
+    color: rgb(227, 110, 110);
 }
