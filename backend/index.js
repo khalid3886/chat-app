@@ -6,11 +6,33 @@ const {userRouter}=require("./route/user.route")
 const{Server}=require('socket.io')
 const http=require('http')
 const httpserver=http.createServer(app)
+const {transports,format}=require('winston')
+const expressWinston=require('express-winston')
 
 app.use(express.json())
 app.use(cors())
 app.use('/users',userRouter)
-
+app.use(expressWinston.logger({
+    transports:[
+        // new transports.Console({
+        //     json:true,
+        //     colorize:true,
+        //     level:"error"
+        // })
+        new transports.File({
+            json:true,
+            level:"warn",
+            filename:"warninglogs.log"
+        })
+    ],
+    format: format.combine(
+        format.colorize(),
+        format.json(),
+        format.prettyPrint()
+    ),
+    msg: "HTTP {{req.method}} {{req.url}}",
+    statusLevels:true
+}))
 
 app.get('/', (req, res) => {
     res.send('home page')

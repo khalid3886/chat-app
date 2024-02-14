@@ -18,6 +18,17 @@ const storage=multer.diskStorage({
 })
 const upload=multer({storage:storage})
 
+userRouter.get('/',auth,async(req,res)=>{
+    try{
+        const user=await UserModel.find()
+        res.status(200).json(user)
+    }
+    catch(err)
+    {
+        res.status(400).json({error:err})
+    }
+})
+
 userRouter.post('/signup',async(req,res)=>{
     const {name,email,pass}=req.body
     try{

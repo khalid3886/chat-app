@@ -4,8 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="style.css">
 </head>
-<body style="display: flex; justify-content: center; align-items: center;">
-    <div>this is private messages page</div>
+<body>
+    <main>
+        <aside>
+            <div id="all-users">
+                </div>
+        </aside>
+        <section>
+            <div id="section-top">
+                <div id="connected-user"></div>
+                <button  class="btn-2" onclick="window.location.href='../signin/index.html'">log out</button>
+            </div>
+            <div id="chat-area" style="display: none;">
+            </div>
+            <div id="text-area" style="display: none;">
+                <input type="text" placeholder="enter the text.." id="input-msg">
+                <button id="send-msg" class="btn-2">submit</button>
+            </div>
+        </section>
+    </main>
+    <script src="https://cdn.socket.io/4.7.4/socket.io.min.js" integrity="sha384-Gr6Lu2Ajx28mzwyVR8CFkULdCU7kMlZ9UthllibdOSo6qAiN+yXNHqtgdTvFXMT4" crossorigin="anonymous"></script>
 </body>
+<script src="script.js"></script>
 </html>
