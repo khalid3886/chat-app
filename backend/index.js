@@ -54,6 +54,7 @@ const wss=new Server(httpserver)
 let connected_user=0;
 wss.on('connection',(socket)=>{
     connected_user++;
+    console.log(socket.id)
     console.log('user is connected')
     socket.emit('active-user',connected_user)
     socket.on('updated-avatar',(email)=>{

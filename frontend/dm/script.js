@@ -1,4 +1,9 @@
 let url='http://localhost:8080'
+const socket=io('http://localhost:8080/',{transports:['websocket']})
+const urlParams = new URLSearchParams(window.location.search);
+const email = urlParams.get('email');
+let receiver=""
+console.log(`email is- ${email}`)
 fetch(`${url}/users`,{
     method:'GET',
     headers:{
@@ -15,8 +20,11 @@ fetch(`${url}/users`,{
 const display=(Alldata)=>{
     const box=document.getElementById('all-users')
     Alldata.forEach(data=>{
+       if(data.email!==email)
+       {
         const card=createCard(data)
         box.appendChild(card)
+       }
     })
 }
 
@@ -56,7 +64,12 @@ const createCard = (data) => {
 ///message
 
 const message=(data)=>{
+    receiver=data.email
+    console.log(`other user is - ${receiver}`)
     document.getElementById('connected-user').textContent=`user- ${data.name}`
     document.getElementById('chat-area').style='block'
     document.getElementById('text-area').style='block'
 }
+
+
+///sockets

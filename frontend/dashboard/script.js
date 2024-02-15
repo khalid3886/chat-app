@@ -152,7 +152,7 @@ const displayMsg=(obj)=>{
 document.getElementById('private-message').addEventListener('click',()=>{
     if(verify===true)
     {
-        window.location.href='../dm/index.html'
+        window.location.href=`../dm/index.html?email=${email}`
     }else{
         alert('you are not verified to access this')
     }
