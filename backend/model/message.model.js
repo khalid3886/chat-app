@@ -3,7 +3,7 @@ const msgSchema=mongoose.Schema({
     senderemail:String,
     receiveremail:String,
     msg:String,
-    time:Date
+    time:String
 },{
     versionKey:false
 })

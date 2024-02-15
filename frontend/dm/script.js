@@ -80,7 +80,7 @@ document.getElementById('send-msg').addEventListener('click',()=>{
         receiveremail:receiver,
         msg:text
     }
-    socket.emit('private-message',obj)
+    socket.emit('private_message',obj)
     displayMsg(obj)
     document.getElementById('input-msg').value=""
 })

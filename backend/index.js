@@ -56,9 +56,9 @@ const wss=new Server(httpserver)
 let connected_user=0;
 wss.on('connection',(socket)=>{
     connected_user++;
-    // console.log(socket.id)
-    socket.on('user-email',(email)=>{
-        redis.setex(`${email}_socketid`, 86400, socket.id);
+    socket.on('user-email',async(email)=>{
+        await redis.setex(`${email}_socketid`, 86400, socket.id);
+        console.log(`${email} id is - ${socket.id}`)
     })
     console.log('user is connected')
     socket.emit('active-user',connected_user)
@@ -68,15 +68,25 @@ wss.on('connection',(socket)=>{
     socket.on('xyz',(name)=>{
         socket.broadcast.emit('new-user',(name))
     })
-    socket.on('private_message', async(data) => {
-        const { senderemail, receiveremail,msg} = data;
-        let time=new Date()
-        time=time.toString().slice(16, 24);
-        const message=new MsgModel({senderemail,receiveremail,msg,time})
-        await message.save()
-        const recipientId=await redis.get(`${receiveremail}_socketid`)
-        socket.to(recipientId).broadcast.emit('receive_private_message', obj);
-});
+    socket.on('private_message', async (data) => {
+        const { senderemail, receiveremail, msg } = data;
+        let time = new Date().toString().slice(16, 24);
+        const message = new MsgModel({ senderemail, receiveremail, msg, time });
+        try {
+            await message.save();
+            const recipientId = await redis.get(`${receiveremail}_socketid`);
+            console.log(`recipient id is ${recipientId}`)
+            console.log('id is-${}')
+            if (recipientId) {
+                socket.to(recipientId).emit('receive_private_message', data);
+            } else {
+                console.log(`Recipient ID not found for ${receiveremail}`);
+            }
+        } catch (error) {
+            console.error('Error saving message to MongoDB:', error);
+        }
+    });
+    
     socket.on('send-message',(obj)=>{
         socket.broadcast.emit('broadcast-msg',obj)
     })
