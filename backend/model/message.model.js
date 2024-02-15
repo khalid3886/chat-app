@@ -1,8 +1,8 @@
 const mongoose=require('mongoose')
 const msgSchema=mongoose.Schema({
-    senderID:String,
-    receiverID:String,
-    content:String,
+    senderemail:String,
+    receiveremail:String,
+    msg:String,
     time:Date
 },{
     versionKey:false

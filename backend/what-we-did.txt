@@ -1,0 +1,15 @@
+created an event user-email taking email of user who connected and stroing it in redis with socket.id as value, socket.id will be use to do dm
+ socket.on('private_message', (data) => {
+        const { senderemail, recieveremail,message } = data;
+        this will be containing sendermail, recievermail and msg store it in database first then from redis find the recipientId
+        const recipientId=await redis,get(`${email}_socketID`)
+        then send the message to user
+               io.to(recipientId).emit('private_message', message);
+});
+
+
+socket.emit('private_message', {
+    recieveremail,
+    sendermail,
+    message: 'Hello there!'
+});

@@ -8,6 +8,8 @@ const http=require('http')
 const httpserver=http.createServer(app)
 const {transports,format}=require('winston')
 const expressWinston=require('express-winston')
+const {redis}=require('./controller/redis.controller')
+const {MsgModel}=require('./model/message.model')
 
 app.use(express.json())
 app.use(cors())
@@ -54,7 +56,10 @@ const wss=new Server(httpserver)
 let connected_user=0;
 wss.on('connection',(socket)=>{
     connected_user++;
-    console.log(socket.id)
+    // console.log(socket.id)
+    socket.on('user-email',(email)=>{
+        redis.setex(`${email}_socketid`, 86400, socket.id);
+    })
     console.log('user is connected')
     socket.emit('active-user',connected_user)
     socket.on('updated-avatar',(email)=>{
@@ -63,6 +68,15 @@ wss.on('connection',(socket)=>{
     socket.on('xyz',(name)=>{
         socket.broadcast.emit('new-user',(name))
     })
+    socket.on('private_message', async(data) => {
+        const { senderemail, receiveremail,msg} = data;
+        let time=new Date()
+        time=time.toString().slice(16, 24);
+        const message=new MsgModel({senderemail,receiveremail,msg,time})
+        await message.save()
+        const recipientId=await redis.get(`${receiveremail}_socketid`)
+        socket.to(recipientId).broadcast.emit('receive_private_message', obj);
+});
     socket.on('send-message',(obj)=>{
         socket.broadcast.emit('broadcast-msg',obj)
     })

@@ -73,3 +73,33 @@ const message=(data)=>{
 
 
 ///sockets
+document.getElementById('send-msg').addEventListener('click',()=>{
+    const text=document.getElementById('input-msg').value
+    const obj={
+        senderemail:email,
+        receiveremail:receiver,
+        msg:text
+    }
+    socket.emit('private-message',obj)
+    displayMsg(obj)
+    document.getElementById('input-msg').value=""
+})
+socket.on('receive_private_message',(obj)=>{
+    displayMsg(obj)
+})
+
+const displayMsg=(obj)=>{
+    const chatarea=document.getElementById('chat-area')
+    const msg=document.createElement('div')
+    let time=new Date()
+    time=time.toString().slice(16, 24);
+    msg.innerHTML=`<p>${obj.msg}</p><p style="position:absolute; right:0 ;opacity:0.7; margin-right:20px;">${time}</p>`
+    if(obj.senderemail===email)
+    {
+        msg.classList.add('outgoing','message');
+    }else{
+        msg.classList.add('incoming','message');
+    }
+    chatarea.appendChild(msg);
+    chatarea.scrollTop = chatarea.scrollHeight;
+}

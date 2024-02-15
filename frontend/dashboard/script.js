@@ -104,6 +104,8 @@ document.getElementById('log-out').addEventListener('click',()=>{
 })
 
 //sockets
+socket.emit('user-email',(email))
+
 socket.on('active-user',(x)=>{
     //  const dot = '<span style="color: green; font-size: 50px;>&bull;</span>';
     document.getElementById('connected-user').innerHTML=`<p style="color:green;">online- ${x}</p>`
